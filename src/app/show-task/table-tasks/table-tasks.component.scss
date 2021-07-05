@@ -1,0 +1,120 @@
+.task-list {
+    width: 100%;
+    padding: 1rem 3rem 1rem 3rem;
+    p {
+        margin-bottom: 0;
+    }
+    .title-menu-task {
+        p {
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+    .radioButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title-menu-task,
+    .items-task {
+        display: flex;
+        align-items: center;
+        background: white;
+        width: 100%;
+        padding: 15px;
+        .item-1 {
+            width: 7%;
+        }
+        .item-2 {
+            width: 23%;
+        }
+        .item-3 {
+            width: 35%;
+        }
+        .item-4,
+        .item-5,
+        .item-6 {
+            width: 10%;
+            text-align: center;
+        }
+        .item-7 {
+            width: 5%;
+            text-align: center;
+        }
+    }
+    .items-task {
+        margin-top: 0.4rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        .custom-control-input:focus~.custom-control-label::before {
+            box-shadow: unset !important;
+        }
+        p {
+            font-size: 14px;
+        }
+        input {
+            width: 17px;
+        }
+        label.custom-control-label {
+            position: absolute;
+            top: 0;
+        }
+        .item-4,
+        .item-5,
+        .item-6 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item-4 {
+            .custom-control-input:checked~.custom-control-label::before {
+                border-color: #ff0000 !important;
+                background-color: #ff0000 !important;
+            }
+        }
+        .item-5 {
+            .custom-control-input:checked~.custom-control-label::before {
+                border-color: #00a2d3 !important;
+                background-color: #00a2d3 !important;
+            }
+        }
+        .item-6 {
+            .custom-control-input:checked~.custom-control-label::before {
+                border-color: #5eff00 !important;
+                background-color: #5eff00 !important;
+            }
+        }
+    }
+}
+
+
+/*
+*** style dialog config
+*/
+
+.p-messages.p-component {
+    position: fixed;
+    right: 64px;
+    top: 29px;
+    .p-message .p-message-wrapper {
+        padding: 0.8rem 1rem;
+    }
+}
+
+[ng-reflect-ng-class="p-message p-message-danger"] {
+    background-color: #ef717d;
+    &::before {
+        content: "";
+        width: 7px;
+        height: 65%;
+        background: red;
+        position: absolute;
+        left: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+}
+
+[ng-reflect-ng-class="p-message p-message-success"] {
+    background-color: #28a745;
+}

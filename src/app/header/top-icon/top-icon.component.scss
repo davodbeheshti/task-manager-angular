@@ -1,0 +1,13 @@
+.top-icon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid gray;
+    padding: .7rem;
+    img {
+        width: 25px;
+        height: 25px;
+        margin-left: 2rem;
+        cursor: pointer;
+    }
+}

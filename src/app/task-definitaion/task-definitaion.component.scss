@@ -1,0 +1,78 @@
+.task-definitaion {
+    padding: 0rem 1rem 1rem 3rem;
+    // div {
+    //     display: flex;
+    //     align-items: center;
+    //     margin-top: 3rem;
+    // }
+    label {
+        margin-bottom: 0;
+    }
+    .description-task {
+        align-items: unset !important;
+        display: flex;
+        textarea {
+            margin-left: 2.8rem;
+            width: 35%;
+            height: 200px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            outline: none;
+            padding: 0.5rem;
+            color: #4a4a4a;
+            padding-top: 0;
+        }
+    }
+    .dropdown-tasks {
+        .p-dropdown.p-component {
+            width: 27%;
+            text-align: center;
+        }
+    }
+    .top-task {
+        display: flex;
+        align-items: center;
+        input {
+            width: 70%;
+            margin-left: 6rem;
+            outline: none;
+            padding-left: 0.5rem;
+        }
+    }
+    .btn-add-task {
+        width: 47.4%;
+        display: flex;
+        justify-content: flex-end;
+        button {
+            border: none;
+            outline: none;
+            width: 100px;
+            background: teal;
+            color: white;
+            font-size: 14px;
+            border-radius: 5px;
+            padding: 7px 0px;
+        }
+    }
+    .title-task,
+    .status-task {
+        position: relative;
+        .valid-titleTask,
+        .valid-status {
+            color: red;
+            left: 11%;
+            position: absolute;
+            font-size: 21px;
+            font-weight: bold;
+        }
+        .valid-status {
+            top: 7px;
+            left: 13% !important;
+        }
+    }
+    .status-task {
+        label {
+            width: 17%;
+        }
+    }
+}

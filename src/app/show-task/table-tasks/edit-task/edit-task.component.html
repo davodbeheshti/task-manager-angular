@@ -1,0 +1,15 @@
+<div class="edit-task" [formGroup]="form">
+    <div class="d-flex justify-content-between w-100 mt-2">
+        <label>titleTask</label>
+        <input type="text" class="form-control" formControlName="titleTask">
+    </div>
+    <div class="d-flex justify-content-between w-100 mt-4">
+        <label>descriptionTask</label>
+        <!-- <input type="text" class="form-control"> -->
+        <textarea class="form-control" formControlName="taskDefinitaion"></textarea>
+    </div>
+
+    <div class="section-btn">
+        <button (click)="clickApplyChanges()">Apply Changes</button>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="task-definitaion" [formGroup]="form">
+
+    <div class="top-task">
+        <div class="w-50 d-flex align-items-center title-task">
+            <label>Title Task</label>
+            <input type="text" formControlName="titleTask" class="form-control">
+            <span class="valid-titleTask" *ngIf="!form.get('titleTask').valid">*</span>
+        </div>
+        <div class="w-50 status-task">
+            <label>Task Status</label>
+            <p-dropdown [options]="optionDropDown" placeholder="select a Status" formControlName="status" optionValue="value" optionLabel='taskStatus' class="ml-2 dropdown-tasks"></p-dropdown>
+            <span class="valid-status" *ngIf="!form.get('status').valid">*</span>
+        </div>
+    </div>
+
+    <div class="description-task mt-4">
+        <label>Description Task</label>
+        <textarea formControlName="taskDefinitaion" class="form-control"></textarea>
+    </div>
+
+    <div class="btn-add-task mt-4">
+        <button (click)="clickAddTask()" [style]="!form.valid ? 'opacity: 0.5;' : null" [disabled]="!form.valid"> Add Task</button>
+    </div>
+
+</div>
