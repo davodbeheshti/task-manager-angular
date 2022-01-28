@@ -44,6 +44,10 @@ export class TaskDefinitaionComponent implements OnInit {
   }
 
   clickAddTask() {
+    console.log(this.form.value);
+    const task = JSON.parse(window.localStorage.getItem('tasks')) || [];
+    task.push(this.form.value);
+    window.localStorage.setItem('tasks' , JSON.stringify(task))
     this.taskService.addTasks(this.form.value);
     this.form.controls.titleTask.setValue('');
     this.form.controls.taskDefinitaion.setValue('');
