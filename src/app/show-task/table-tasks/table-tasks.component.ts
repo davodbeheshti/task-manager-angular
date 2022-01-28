@@ -114,7 +114,7 @@ export class TableTasksComponent implements OnInit {
         // item.taskDefinitaion = data.taskDefinitaion;
         // this.form.controls.arrayLoopCustomer.value[i] = item;
         this.form.controls.arrayLoopCustomer.value[i].titleTask = data.titleTask;
-        this.form.controls.arrayLoopCustomer.value[i].taskDefinitaion = data.taskDefinitaion ;
+        this.form.controls.arrayLoopCustomer.value[i].taskDefinitaion = data.taskDefinitaion;
         window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
         console.log(this.form.controls.arrayLoopCustomer.value);
       }
@@ -123,16 +123,16 @@ export class TableTasksComponent implements OnInit {
 
   ////// change radioButton
 
-  changeDoing(i) {
-    console.log(i);
+  changeDoing() {
+    window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
   }
 
-  changeFinished(i) {
-    console.log(i);
+  changeFinished() {
+    window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
   }
 
-  changeNotStarted(i) {
-    console.log(i);
+  changeNotStarted() {
+    window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
   }
 
   ///////////////////////////////
