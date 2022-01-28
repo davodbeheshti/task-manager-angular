@@ -23,19 +23,13 @@
                 <p class="item-2">{{item.titleTask}}</p>
                 <p class="item-3">{{item.taskDefinitaion}}</p>
                 <div class="item-4 custom-control custom-radio">
-                    <!-- <input type="radio" [id]="'notStart'+i" class="custom-control-input" value="notStarted"> -->
                     <p-radioButton (onClick)="changeDoing()" name="status" value="notStarted" formControlName="status"></p-radioButton>
-                    <!-- <label class="custom-control-label" [for]="'notStart'+i"></label> -->
                 </div>
                 <div class="item-5 custom-control custom-radio">
-                    <!-- <input type="radio" [id]="'doing'+i" class="custom-control-input" value="doing"> -->
                     <p-radioButton (onClick)="changeFinished()" name="status" value="doing" formControlName="status"></p-radioButton>
-                    <!-- <label class="custom-control-label" [for]="'doing'+i"></label> -->
                 </div>
                 <div class="item-6 custom-control custom-radio">
-                    <!-- <input type="radio" [id]="'finished'+i" class="custom-control-input" [checked]="(item.status === 'finished') ? true : false" [name]="i" value="finished"> -->
                     <p-radioButton (onClick)="changeNotStarted()" name="status" value="finished" formControlName="status"></p-radioButton>
-                    <!-- <label class="custom-control-label" [for]="'finished'+i"></label> -->
                 </div>
                 <i (click)="clickShowModalEdit(item , i)" class="pi pi-eye item-7"></i>
                 <i (click)="clickRemoveTask(i , item)" class="pi pi-trash item-7"></i>
