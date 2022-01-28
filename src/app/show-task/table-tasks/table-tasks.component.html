@@ -17,7 +17,7 @@
             <p class="item-7">Edite</p>
             <p class="item-7">delet</p>
         </div>
-        <div>
+        <div formArrayName="arrayLoopCustomer">
             <div *ngFor="let item of arrayLoopFunction(form); let i = index" class="items-task" [formGroupName]="i">
                 <span class="item-1">{{i + 1}}</span>
                 <p class="item-2">{{item.titleTask}}</p>
