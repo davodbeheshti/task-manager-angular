@@ -3,7 +3,7 @@
 
 <div class="task-list" [formGroup]="form">
     <!-- <div style="display: block">
-        <canvas baseChart [datasets]="[{ data: [notStart, doing, finished], label: 'taskStatus' }]" [labels]="['notStartedd', 'doing', 'finished']" [options]="barChartOptions" [plugins]="barChartPlugins" [chartType]="'bar'" [legend]="true">
+        <canvas baseChart [datasets]="[{ data: [notStart, doing, finished], label: 'status' }]" [labels]="['notStartedd', 'doing', 'finished']" [options]="barChartOptions" [plugins]="barChartPlugins" [chartType]="'bar'" [legend]="true">
       </canvas>
     </div> -->
     <div>
@@ -17,24 +17,26 @@
             <p class="item-7">Edite</p>
             <p class="item-7">delet</p>
         </div>
-        <div *ngFor="let item of arrayLoopFunction(form); let i = index" class="items-task" [formGroupName]="i">
-            <span class="item-1">{{i + 1}}</span>
-            <p class="item-2">{{item.titleTask}}</p>
-            <p class="item-3">{{item.taskDefinitaion}}</p>
-            <div class="item-4 custom-control custom-radio">
-                <input type="radio" [id]="'notStart'+i" class="custom-control-input" (change)="changeNotStarted(i)" [checked]="(item.taskStatus === 'notStarted') ? true : false" [name]="i" value="notStarted">
-                <label class="custom-control-label" [for]="'notStart'+i"></label>
+        <div>
+            <div *ngFor="let item of arrayLoopFunction(form); let i = index" class="items-task" [formGroupName]="i">
+                <span class="item-1">{{i + 1}}</span>
+                <p class="item-2">{{item.titleTask}}</p>
+                <p class="item-3">{{item.taskDefinitaion}}</p>
+                <div class="item-4 custom-control custom-radio">
+                    <input type="radio" [id]="'notStart'+i" class="custom-control-input" (change)="changeNotStarted(i)" [checked]="(item.status === 'notStarted') ? true : false" [name]="i" value="notStarted">
+                    <label class="custom-control-label" [for]="'notStart'+i"></label>
+                </div>
+                <div class="item-5 custom-control custom-radio">
+                    <input type="radio" [id]="'doing'+i" class="custom-control-input" (change)="changeDoing(i)" [checked]="(item.status === 'doing') ? true : false" [name]="i" value="doing">
+                    <label class="custom-control-label" [for]="'doing'+i"></label>
+                </div>
+                <div class="item-6 custom-control custom-radio">
+                    <input type="radio" [id]="'finished'+i" class="custom-control-input" (change)="changeFinished(i)" [checked]="(item.status === 'finished') ? true : false" [name]="i" value="finished">
+                    <label class="custom-control-label" [for]="'finished'+i"></label>
+                </div>
+                <i (click)="clickShowModalEdit(item , i)" class="pi pi-eye item-7"></i>
+                <i (click)="clickRemoveTask(i , item)" class="pi pi-trash item-7"></i>
             </div>
-            <div class="item-5 custom-control custom-radio">
-                <input type="radio" [id]="'doing'+i" class="custom-control-input" (change)="changeDoing(i)" [checked]="(item.taskStatus === 'doing') ? true : false" [name]="i" value="doing">
-                <label class="custom-control-label" [for]="'doing'+i"></label>
-            </div>
-            <div class="item-6 custom-control custom-radio">
-                <input type="radio" [id]="'finished'+i" class="custom-control-input" (change)="changeFinished(i)" [checked]="(item.taskStatus === 'finished') ? true : false" [name]="i" value="finished">
-                <label class="custom-control-label" [for]="'finished'+i"></label>
-            </div>
-            <i (click)="clickShowModalEdit(item , i)" class="pi pi-eye item-7"></i>
-            <i (click)="clickRemoveTask(i , item)" class="pi pi-trash item-7"></i>
         </div>
     </div>
 </div>

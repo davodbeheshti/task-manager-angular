@@ -22,6 +22,7 @@ export class TableTasksComponent implements OnInit {
   finished: number = 0;
   message: Message[] = [];
   ref: DynamicDialogRef;
+  listTask  = [];
 
   // int shalfkasf;
 
@@ -33,8 +34,10 @@ export class TableTasksComponent implements OnInit {
     private taskService: TaskServiceService,
     public messageService: MessageService,
     public dialogService: DialogService,
-    public fb: FormBuilder
-  ) {}
+    public fb: FormBuilder,
+  ) {
+    this.listTask = JSON.parse(window.localStorage.getItem('tasks'))
+  }
 
   clickRemoveTask(i: number, item) {
     this.confirmationService.confirm({
@@ -62,29 +65,6 @@ export class TableTasksComponent implements OnInit {
     });
   }
 
-  listTasks: any[] = [
-    {
-      titleTask: 'test1',
-      taskDefinitaion: 'test1',
-      taskStatus: 'doing',
-    },
-    {
-      titleTask: 'test2',
-      taskDefinitaion: 'test2',
-      taskStatus: 'finished',
-    },
-    {
-      titleTask: 'test3',
-      taskDefinitaion: 'test3',
-      taskStatus: 'doing',
-    },
-    {
-      titleTask: 'test4',
-      taskDefinitaion: 'test4',
-      taskStatus: 'notStarte',
-    },
-  ];
-
   form: FormGroup = new FormGroup({
     // statusTask: new FormControl(''),
     arrayLoopCustomer: new FormArray([]),
@@ -96,16 +76,23 @@ export class TableTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.listTask.map(data => {
+      this.tasks(data)
+    })
+    
     this.taskService.tasks.subscribe((data) => {
-      (this.form.controls.arrayLoopCustomer as FormArray).push(
-        this.fb.group({
-          titleTask: data.titleTask,
-          taskDefinitaion: data.taskDefinitaion,
-          taskStatus: data.status,
-        })
-      );
-      console.log(data);
+      this.tasks(data)
     });
+  }
+
+  tasks(data) {
+    (this.form.controls.arrayLoopCustomer as FormArray).push(
+      this.fb.group({
+        titleTask: data.titleTask,
+        taskDefinitaion: data.taskDefinitaion,
+        status: data.status,
+      })
+    )
   }
 
   arrayLoopFunction(form) {
