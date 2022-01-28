@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TaskServiceService } from 'src/app/service/task-service.service';
 import { ItableShowTask } from '../../Model/m-tableShowTask';
@@ -22,7 +22,7 @@ export class TableTasksComponent implements OnInit {
   finished: number = 0;
   message: Message[] = [];
   ref: DynamicDialogRef;
-  listTask  = [];
+  listTask = [];
 
   // int shalfkasf;
 
@@ -35,6 +35,7 @@ export class TableTasksComponent implements OnInit {
     public messageService: MessageService,
     public dialogService: DialogService,
     public fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.listTask = JSON.parse(window.localStorage.getItem('tasks'))
   }
@@ -52,8 +53,7 @@ export class TableTasksComponent implements OnInit {
           },
         ];
         (this.form.controls.arrayLoopCustomer as FormArray).removeAt(i);
-        // this.listTask = this.listTask.filter(x => x.id !== item.id)
-        window.localStorage.setItem('tasks' , JSON.stringify(this.form.controls.arrayLoopCustomer.value));
+        window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value));
       },
       reject: () => {
         this.message = [
@@ -81,7 +81,7 @@ export class TableTasksComponent implements OnInit {
     this.listTask.map(data => {
       this.tasks(data)
     })
-    
+
     this.taskService.tasks.subscribe((data) => {
       this.tasks(data)
     });
@@ -93,13 +93,9 @@ export class TableTasksComponent implements OnInit {
         titleTask: data.titleTask,
         taskDefinitaion: data.taskDefinitaion,
         status: data.status,
-        id : data.id
+        id: data.id
       })
     )
-  }
-
-  arrayLoopFunction(form) {
-    return (form = this.form.controls.arrayLoopCustomer.value);
   }
 
   clickShowModalEdit(item: any, i) {
@@ -111,9 +107,17 @@ export class TableTasksComponent implements OnInit {
       data: { ...item },
     });
     this.ref.onClose.subscribe((data) => {
-      this.form.controls.arrayLoopCustomer.value[i].titleTask = data.titleTask;
-      this.form.controls.arrayLoopCustomer.value[i].taskDefinitaion =
-        data.taskDefinitaion;
+      if (data) {
+        // debugger
+        console.log(data);
+        // item.titleTask = data.titleTask;
+        // item.taskDefinitaion = data.taskDefinitaion;
+        // this.form.controls.arrayLoopCustomer.value[i] = item;
+        this.form.controls.arrayLoopCustomer.value[i].titleTask = data.titleTask;
+        this.form.controls.arrayLoopCustomer.value[i].taskDefinitaion = data.taskDefinitaion ;
+        window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
+        console.log(this.form.controls.arrayLoopCustomer.value);
+      }
     });
   }
 
