@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { ITaskStatus } from '../Model/m-tableShowTask';
 import { TaskServiceService } from '../service/task-service.service';
+import * as uuid from 'uuid';
+
 
 @Component({
   selector: 'app-task-definitaion',
@@ -35,19 +37,17 @@ export class TaskDefinitaionComponent implements OnInit {
     status: new FormControl('', Validators.required),
   });
 
-  addingTask() {
-    return this.fb.group({
-      titleTask: this.form.controls.titleTask.value,
-      taskDefinitaion: this.form.controls.taskDefinitaion.value,
-      taskStatus: this.form.controls.status.value,
-    });
-  }
-
   clickAddTask() {
-    console.log(this.form.value);
-    const task = JSON.parse(window.localStorage.getItem('tasks')) || [];
-    task.push(this.form.value);
-    window.localStorage.setItem('tasks' , JSON.stringify(task))
+    const {titleTask,taskDefinitaion,status} = this.form.value;
+    const task = {
+      titleTask,
+      taskDefinitaion,
+      status,
+      id : uuid.v4(),
+    }
+    const taskList = JSON.parse(window.localStorage.getItem('tasks')) || [];
+    taskList.push(task);
+    window.localStorage.setItem('tasks' , JSON.stringify(taskList))
     this.taskService.addTasks(this.form.value);
     this.form.controls.titleTask.setValue('');
     this.form.controls.taskDefinitaion.setValue('');

@@ -52,6 +52,8 @@ export class TableTasksComponent implements OnInit {
           },
         ];
         (this.form.controls.arrayLoopCustomer as FormArray).removeAt(i);
+        // this.listTask = this.listTask.filter(x => x.id !== item.id)
+        window.localStorage.setItem('tasks' , JSON.stringify(this.form.controls.arrayLoopCustomer.value));
       },
       reject: () => {
         this.message = [
@@ -91,6 +93,7 @@ export class TableTasksComponent implements OnInit {
         titleTask: data.titleTask,
         taskDefinitaion: data.taskDefinitaion,
         status: data.status,
+        id : data.id
       })
     )
   }
@@ -118,17 +121,14 @@ export class TableTasksComponent implements OnInit {
 
   changeDoing(i) {
     console.log(i);
-    
   }
 
   changeFinished(i) {
     console.log(i);
-    
   }
 
   changeNotStarted(i) {
     console.log(i);
-    
   }
 
   ///////////////////////////////
