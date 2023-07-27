@@ -8,9 +8,6 @@ import { ItableShowTask } from '../Model/m-tableShowTask';
 export class TaskServiceService {
 
   constructor() { }
-
-  // public tasks: Subject<any>  
-  // public tasks : Subject<any> = '';
   public tasks = new Subject<ItableShowTask>();
 
   addTasks(data : ItableShowTask) {

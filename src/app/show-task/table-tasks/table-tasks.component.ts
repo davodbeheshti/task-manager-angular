@@ -23,6 +23,7 @@ export class TableTasksComponent implements OnInit {
   message: Message[] = [];
   ref: DynamicDialogRef;
   listTask = [];
+  refreshTable: boolean = true;
 
   // int shalfkasf;
 
@@ -108,15 +109,14 @@ export class TableTasksComponent implements OnInit {
     });
     this.ref.onClose.subscribe((data) => {
       if (data) {
-        // debugger
-        console.log(data);
-        // item.titleTask = data.titleTask;
-        // item.taskDefinitaion = data.taskDefinitaion;
-        // this.form.controls.arrayLoopCustomer.value[i] = item;
-        this.form.controls.arrayLoopCustomer.value[i].titleTask = data.titleTask;
-        this.form.controls.arrayLoopCustomer.value[i].taskDefinitaion = data.taskDefinitaion;
+        this.refreshTable = false;
+        this.form.get("arrayLoopCustomer").value[i] = data;
+        console.log(this.form.get('arrayLoopCustomer').value);
         window.localStorage.setItem('tasks', JSON.stringify(this.form.controls.arrayLoopCustomer.value))
-        console.log(this.form.controls.arrayLoopCustomer.value);
+        setTimeout(() => {
+          this.refreshTable = true;
+          this.cdr.detectChanges();
+        }, 0);
       }
     });
   }
